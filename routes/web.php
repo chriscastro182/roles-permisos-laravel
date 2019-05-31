@@ -47,6 +47,12 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('users', 'UserController@index')->name('users.index')
 		->middleware('permission:users.index');
 
+    Route::get('users/create', 'UserController@create')->name('users.create')
+        ->middleware('permission:users.create');
+
+    Route::post('users/store', 'UserController@store')->name('users.store')
+        ->middleware('permission:users.create');
+
 	Route::put('users/{user}', 'UserController@update')->name('users.update')
 		->middleware('permission:users.edit');
 
@@ -58,25 +64,5 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('users/{user}/edit', 'UserController@edit')->name('users.edit')
 		->middleware('permission:users.edit');
-	//Products
-	Route::post('products/store', 'ProductController@store')->name('products.store')
-		->middleware('permission:products.create');
 
-	Route::get('products', 'ProductController@index')->name('products.index')
-		->middleware('permission:products.index');
-
-	Route::get('products/create', 'ProductController@create')->name('products.create')
-		->middleware('permission:products.create');
-
-	Route::put('products/{product}', 'ProductController@update')->name('products.update')
-		->middleware('permission:products.edit');
-
-	Route::get('products/{product}', 'ProductController@show')->name('products.show')
-		->middleware('permission:products.show');
-
-	Route::delete('products/{product}', 'ProductController@destroy')->name('products.destroy')
-		->middleware('permission:products.destroy');
-
-	Route::get('products/{product}/edit', 'ProductController@edit')->name('products.edit')
-		->middleware('permission:products.edit');
 });

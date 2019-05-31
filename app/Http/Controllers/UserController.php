@@ -77,4 +77,32 @@ class UserController extends Controller
 
         return back()->with('info', 'Eliminado correctamente');
     }
+
+    public function create()
+    {
+        $roles=Role::all();
+        return view('users.create', compact( 'roles'));
+    }
+
+    public function store(Request $request)
+    {
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $auxiliar=$request->input('password');
+        $user->password = $password = bcrypt($auxiliar);
+        $validar=User::where('email',$user->email)->get();
+        foreach ($validar as $anteriorUser)
+        {
+            if($validar){
+                return back()->with('error','Disculpe el correo electronico '. $user->email .' ya fue registrado por '. $anteriorUser['name'] .' por favor introduzca uno distinto');
+            }
+        }
+        $user->save();
+        //sincroniza insert roles
+        $user->roles()->sync($request->get('roles'));
+        return redirect()->route('users.edit',$user->id)
+            ->with('info','El usuario '. $user->name .' ha sido guardado correctamente');
+    }
+
 }
