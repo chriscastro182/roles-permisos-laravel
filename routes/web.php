@@ -18,7 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/newLogin', function (){
+	return view('auth.loginNew');
+});
 Route::middleware(['auth'])->group(function () {
 	//Roles
 	Route::post('roles/store', 'RoleController@store')->name('roles.store')
