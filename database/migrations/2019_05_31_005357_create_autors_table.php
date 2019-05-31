@@ -17,7 +17,7 @@ class CreateAutorsTable extends Migration
             $table->increments('id');
             $table->longText('calle');
             $table->string('ext');
-            $table->string('int');
+            $table->string('int')->nullable();
             $table->string('colonia');
             $table->string('cp');
             $table->string('municipio');

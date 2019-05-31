@@ -16,7 +16,7 @@ class CreatePublicacionsTable extends Migration
         Schema::create('publicacions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo');
-            $table->dateTime('fechaRecibido');
+            $table->date('fechaRecibido');
             $table->timestamps();
         });
     }
