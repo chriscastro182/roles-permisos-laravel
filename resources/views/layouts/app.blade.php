@@ -87,16 +87,11 @@
                 </li>
             </ul>
         </nav>
-        <div class="content p-4">
-            <main class="contenido">                
-                <!--/row-->
-                <div class="row  mb-3">
+        <div class="row">
                     {{-- Contenido --}}
                     @yield('content')
                     {{-- /Contenido --}}
                 </div>
-            </main>
-        </div>
     </div>
 
   
